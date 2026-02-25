@@ -15,14 +15,14 @@ public class SecurityConfig {
     public SecurityFilterChain SecurityFilterChain(HttpSecurity httpSecurity) {
 
         httpSecurity.authorizeHttpRequests((request) ->
-                        request.requestMatchers("/").permitAll()
+                        request.requestMatchers("/", "/showSignupPage", "/signup", "/showLogin", "/showBlogContent").permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                                 .anyRequest().authenticated()
 
                 )
                 .formLogin((login) ->
                         login.loginPage("/login")
-                                .defaultSuccessUrl("/showBlogs")
+                                .defaultSuccessUrl("/", true)
                                 .failureUrl("/login?error=cannotLogin")
                                 .permitAll()
                 )

@@ -1,10 +1,10 @@
 package com.blog.blog.repository;
 
-import com.blog.blog.model.User;
+import com.blog.blog.model.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String username);
+public interface AppUserRepository extends JpaRepository<AppUser, Long> {
+    AppUser findByUsername(String username);
 }

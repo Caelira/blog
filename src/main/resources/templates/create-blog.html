@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Write a blog</title>
+</head>
+<body>
+Write blog here:
+
+<form th:action="@{/saveBlog}" method="post" th:object="${blog}">
+    Title: <input type="text" th:field="*{title}" > <br>
+    Content: <input type="text" th:field="*{content}">
+    <input type="submit" value="Write">
+</form>
+</body>
+</html>

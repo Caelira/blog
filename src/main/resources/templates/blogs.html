@@ -5,7 +5,28 @@
     <title>Blogs</title>
 </head>
 <body>
-blogs apir here:
+<div th:if="${user != null}" >
+    Name: <p th:text="${user.name}" ></p>
 
+</div>
+
+<div th:if="${user == null}">
+    Login: <a th:href="@{/showLogin}"><button type="button">Login</button></a> <br>
+    Signup: <a th:href="@{/showSignupPage}"><button type="button">Signup</button></a>
+</div>
+
+
+<div th:if="${user != null}" >
+    Add a blog!
+    <a th:href="@{/writeBlog}"><button>Write a blog</button></a>
+</div>
+<br>
+blogs apir here:
+<div th:each="blog : ${blogs}" >
+    <a th:href="@{/showBlogContent(id=${blog.id})}">
+    <p th:text="${blog.title}" > </p> <br>
+    written by: <h6 th:text="${blog.getWrittenBy().getUsername()}" ></h6>
+    </a>
+</div>
 </body>
 </html>

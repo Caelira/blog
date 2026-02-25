@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity(name = "blog_user")
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,15 +15,17 @@ public class User {
     private String username;
     private String password;
     private String name;
+    private String role;
 
-    public User(Long userId, String username, String password, String name) {
+    public AppUser(Long userId, String username, String password, String name, String role) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.name = name;
+        this.role = role;
     }
 
-    public User() {
+    public AppUser() {
     }
 
     public Long getUserId() {
@@ -56,5 +58,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
