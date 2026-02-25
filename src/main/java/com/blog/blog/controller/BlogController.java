@@ -48,6 +48,7 @@ public class BlogController {
             if(result.hasFieldErrors()){
                 result.getFieldError("content").getDefaultMessage();
             }
+            System.out.println("There was an error");
             return "create-blog";
         }
         AppUser currentUser = userService.findByUsername(user.getUsername());
@@ -61,7 +62,7 @@ public class BlogController {
         blog.setWrittenBy(currentUser);
         blog.setDateWritten(LocalDate.now());
         blogService.saveBlog(blog);
-        return "blogs";
+        return "redirect:/";
     }
 
 

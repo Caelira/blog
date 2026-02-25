@@ -41,9 +41,6 @@ public class LinkController {
 
         List<Blog> allBlogs = blogService.findAll();
 
-        for(Blog b : allBlogs){
-            System.out.println(b.getTitle());
-        }
 
         model.addAttribute("blogs", allBlogs);
 

@@ -28,7 +28,7 @@ public class SecurityConfig {
                 )
                 .logout((logout) ->
                         logout.logoutUrl("/logout")
-                                .logoutSuccessUrl("/showBlogs")
+                                .logoutSuccessUrl("/")
                 );
 
         return httpSecurity.build();

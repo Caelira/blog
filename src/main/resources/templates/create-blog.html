@@ -1,16 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Write a blog</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-Write blog here:
+<header class="header-bar">
+    <div class="header-text">
+        Got something to share?
+    </div>
+    <div class="header-actions">
+        <a th:href="@{/}"><button class="button" type="button"><span>Back to Blogs</span></button></a>
+        <form th:action="@{/logout}" method="post" style="margin: 0;">
+            <button class="button" type="submit"><span>Logout</span></button>
+        </form>
+    </div>
+</header>
 
-<form th:action="@{/saveBlog}" method="post" th:object="${blog}">
-    Title: <input type="text" th:field="*{title}" > <br>
-    Content: <input type="text" th:field="*{content}">
-    <input type="submit" value="Write">
-</form>
+<main class="container" style="max-width: 600px; margin-top: 2rem;">
+    <div class="heading">
+        <h1 class="heading__title">Write blog here:</h1>
+    </div>
+    <form class="form" th:action="@{/saveBlog}" method="post" th:object="${blog}">
+        <div style="text-align: left; margin-bottom: 1.5rem;">
+            <label class="form__label" for="title">Title:</label>
+            <input class="form__input" type="text" id="title" th:field="*{title}" style="width: 100%;" required>
+        </div>
+        <div style="text-align: left; margin-bottom: 2.5rem;">
+            <label class="form__label" for="content">Content:</label>
+            <input class="form__input" type="text" id="content" th:field="*{content}" style="width: 100%; padding-bottom: 3rem;" required>
+        </div>
+        <div style="text-align: center;">
+            <button class="button" type="submit" style="font-size: 1.3rem;"><span>Publish Blog</span></button>
+        </div>
+    </form>
+</main>
 </body>
 </html>

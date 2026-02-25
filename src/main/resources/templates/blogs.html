@@ -1,32 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:if="${user != null}" >
-    Name: <p th:text="${user.name}" ></p>
 
-</div>
+<header class="header-bar">
+    <div class="header-text">
+        Want to write your own blog?
+    </div>
 
-<div th:if="${user == null}">
-    Login: <a th:href="@{/showLogin}"><button type="button">Login</button></a> <br>
-    Signup: <a th:href="@{/showSignupPage}"><button type="button">Signup</button></a>
-</div>
+    <div class="header-actions">
+        <div th:if="${user != null}" style="display: flex; align-items: center; gap: 1rem;">
+            <span style="font-size: 1.3rem;">Welcome, <span th:text="${user.name}"></span>!</span>
+            <a th:href="@{/writeBlog}"><button class="button" type="button"><span>Write a blog</span></button></a>
+            <form th:action="@{/logout}" method="post" style="margin: 0;">
+                <button class="button" type="submit"><span>Logout</span></button>
+            </form>
+        </div>
 
+        <div th:if="${user == null}" style="display: flex; gap: 1rem;">
+            <a th:href="@{/showLogin}"><button class="button" type="button"><span>Login</span></button></a>
+            <a th:href="@{/showSignupPage}"><button class="button" type="button"><span>Signup</span></button></a>
+        </div>
+    </div>
+</header>
 
-<div th:if="${user != null}" >
-    Add a blog!
-    <a th:href="@{/writeBlog}"><button>Write a blog</button></a>
-</div>
-<br>
-blogs apir here:
-<div th:each="blog : ${blogs}" >
-    <a th:href="@{/showBlogContent(id=${blog.id})}">
-    <p th:text="${blog.title}" > </p> <br>
-    written by: <h6 th:text="${blog.getWrittenBy().getUsername()}" ></h6>
+<main class="blog-grid">
+    <a th:each="blog : ${blogs}" th:href="@{/showBlogContent(id=${blog.id})}" class="blog-card">
+        <h2 class="blog-title" th:text="${blog.title}"></h2>
+        <p class="blog-author">By: <span th:text="${blog.getWrittenBy().getUsername()}"></span></p>
+        <p class="blog-date" th:text="${blog.getDateWritten()}"></p>
     </a>
-</div>
+</main>
 </body>
 </html>
